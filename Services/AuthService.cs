@@ -38,5 +38,24 @@ namespace Kmc_Login.Services
                 return "Failed to register. Please try again.";
             }
         }
+
+        public string Login(string email, string password)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                return "Please enter both email and password!";
+            }
+
+            bool isValid = _userRepo.ValidateUser(email, password);
+
+            if (isValid)
+            {
+                return "SUCCESS";
+            }
+            else
+            {
+                return "Invalid Email or Password!";
+            }
+        }
     }
 }

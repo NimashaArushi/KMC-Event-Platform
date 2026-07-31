@@ -3,7 +3,7 @@ using Kmc_Login.Services;
 
 namespace Kmc_Login
 {
-    public partial class Web_Form_with_Master_Page : System.Web.UI.Page
+    public partial class SignUp : System.Web.UI.Page
     {
         private AuthService _authService = new AuthService();
 
@@ -11,18 +11,18 @@ namespace Kmc_Login
         {
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnSignUp_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
+            string confirmPassword = txtConfirmPassword.Text.Trim();
 
-            string result = _authService.Login(email, password);
+            string result = _authService.Register(email, password, confirmPassword);
 
             if (result == "SUCCESS")
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = "Login Successful! Welcome.";
-              Response.Redirect("Dashboard.aspx");
+                lblMessage.Text = "Registration Successful! You can login now.";
             }
             else
             {

@@ -11,7 +11,8 @@ namespace Kmc_Login.Data
 
         public bool RegisterUser(User user)
         {
-            using (SqlConnection conn = new SqlConnection(connStr)) {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
                 string query = "INSERT INTO Users(Email,Password) VALUES (@Email,@Password)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Email", user.Email);
@@ -24,19 +25,33 @@ namespace Kmc_Login.Data
             }
         }
 
-        public bool IsEmailExists(string email) {
-            using (SqlConnection conn = new SqlConnection(connStr)) {
+        public bool IsEmailExists(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
                 string query = "SELECT COUNT(1) FROM Users WHERE Email = @Email";
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
                 conn.Open();
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count > 0;
-            
+
             }
         }
 
+        public bool ValidateUser(string email, string password)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string query = "SELECT COUNT(1) FROM Users WHERE Email = @Email AND Password = @Password";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
 
-
-
+                conn.Open();
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
     }
 }

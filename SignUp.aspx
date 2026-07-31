@@ -1,22 +1,22 @@
-﻿HTML
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Web Form with Master Page.aspx.cs" Inherits="Kmc_Login.Web_Form_with_Master_Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="Kmc_Login.SignUp" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>KMC Platform - Login</title>
+    <title>Sign Up - KMC App</title>
     <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        
         <table class="center-table">
             <tr>
                 <td>
-                    <!-- Login Form Box -->
                     <div class="login-card">
-                        
-                        <h2>KMC Login</h2>
+                        <h2>KMC Sign Up</h2>
+
+                        <div class="message-group">
+                            <asp:Label ID="lblMessage" runat="server" CssClass="error-message"></asp:Label>
+                        </div>
 
                         <div class="form-group">
                             <label for="txtEmail">Email Address :</label>
@@ -29,25 +29,23 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-login" OnClick="btnLogin_Click" />
+                            <label for="txtConfirmPassword">Confirm Password :</label>
+                            <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                         </div>
 
-                        <div class="message-group">
-                            <asp:Label ID="lblMessage" runat="server" CssClass="error-message"></asp:Label>
+                        <div class="form-group">
+                            <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="btn-login" OnClick="btnSignUp_Click" />
                         </div>
 
-
-                        <!-- Sign Up Link-->
                         <div class="form-group" style="margin-top: 15px; text-align: center;">
-                            <span>Don't have an account? </span>
-                            <asp:HyperLink ID="linkSignUp" runat="server" NavigateUrl="SignUp.aspx">Sign Up Here</asp:HyperLink>
+                            <span>Already have an account? </span>
+                            <asp:HyperLink ID="linkLogin" runat="server" NavigateUrl="Web Form with Master Page.aspx">Login Here</asp:HyperLink>
                         </div>
 
                     </div>
                 </td>
             </tr>
         </table>
-
     </form>
 </body>
 </html>
