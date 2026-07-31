@@ -26,10 +26,11 @@
     background-color: rgba(255, 255, 255, 0.95);
     padding: 35px 30px;
     border-radius: 12px;
-    border: 2px solid #28a745; 
+    border: 2px solid #28a745;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     text-align: left;
     box-sizing: border-box;
+    margin-top: 80px;
 }
 
     .login-card h2 {
