@@ -33,6 +33,14 @@
                             <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                         </div>
 
+                         <div class="form-group">
+                            <label>Register As:</label>
+                            <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control">
+                                <asp:ListItem Text="Resident (Public User)" Value="Resident"></asp:ListItem>
+                                <asp:ListItem Text="Event Organizer" Value="Organizer"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
                         <div class="form-group">
                             <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="btn-login" OnClick="btnSignUp_Click" />
                         </div>

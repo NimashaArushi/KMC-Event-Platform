@@ -1,6 +1,6 @@
 ﻿using System;
 using Kmc_Login.Services;
-
+using Kmc_Login.Models;
 namespace Kmc_Login
 {
     public partial class Web_Form_with_Master_Page : System.Web.UI.Page
@@ -16,18 +16,31 @@ namespace Kmc_Login
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            string result = _authService.Login(email, password);
+            
+            User user = _authService.ValidateUser(email, password);
 
-            if (result == "SUCCESS")
+          
+            if (user != null)
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = "Login Successful! Welcome.";
-              Response.Redirect("Dashboard.aspx");
+               
+                Session["UserEmail"] = user.Email;
+                Session["UserRole"] = user.Role;
+
+               
+                if (user.Role == "Organizer")
+                {
+                    Response.Redirect("OrganizerDashboard.aspx");
+                }
+                else
+                {
+                    Response.Redirect("ResidentHome.aspx");
+                }
             }
             else
             {
+               
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = result;
+                lblMessage.Text = "Invalid Email or Password!";
             }
         }
     }

@@ -16,8 +16,9 @@ namespace Kmc_Login
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
             string confirmPassword = txtConfirmPassword.Text.Trim();
+            string selectedRole = ddlRole.SelectedValue;
 
-            string result = _authService.Register(email, password, confirmPassword);
+            string result = _authService.Register(email, password, confirmPassword,selectedRole);
 
             if (result == "SUCCESS")
             {
