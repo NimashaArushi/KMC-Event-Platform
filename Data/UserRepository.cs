@@ -57,7 +57,6 @@ namespace Kmc_Login.Data
             }
         }
 
-        //User Details + Role
         public User GetUserByEmail(string email)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
