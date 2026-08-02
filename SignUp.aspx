@@ -47,7 +47,7 @@
 
                         <div class="form-group" style="margin-top: 15px; text-align: center;">
                             <span>Already have an account? </span>
-                            <asp:HyperLink ID="linkLogin" runat="server" NavigateUrl="Web Form with Master Page.aspx">Login Here</asp:HyperLink>
+                          <asp:HyperLink ID="linkLogin" runat="server" NavigateUrl="Default.aspx">Login Here</asp:HyperLink>
                         </div>
 
                     </div>

@@ -7,7 +7,7 @@ namespace Kmc_Login.Data
 {
     public class UserRepository
     {// connection to database
-        private string connStr = ConfigurationManager.ConnectionStrings["KMCConnString"].ConnectionString;
+        private string connStr = ConfigurationManager.ConnectionStrings["KMCConnection"].ConnectionString;
 
 
         //Register

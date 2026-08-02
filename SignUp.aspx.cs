@@ -18,12 +18,24 @@ namespace Kmc_Login
             string confirmPassword = txtConfirmPassword.Text.Trim();
             string selectedRole = ddlRole.SelectedValue;
 
-            string result = _authService.Register(email, password, confirmPassword,selectedRole);
+            string result = _authService.Register(email, password, confirmPassword, selectedRole);
 
             if (result == "SUCCESS")
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = "Registration Successful! You can login now.";
+               
+                Session["UserEmail"] = email;
+                Session["UserRole"] = selectedRole;
+
+               
+                if (selectedRole == "Organizer")
+                {
+                    Response.Redirect("OrganizerDashboard.aspx");
+                }
+                else
+                {
+                    
+                    Response.Redirect("Default.aspx");
+                }
             }
             else
             {

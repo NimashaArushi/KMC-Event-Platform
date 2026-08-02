@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OrganizerDashboard.aspx.cs" Inherits="Kmc_Login.OrganizerDashboard" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OrganizerDashboard.aspx.cs" Inherits="Kmc_Login.OrganizerDashboard" %>
 
 <!DOCTYPE html>
 
@@ -6,75 +7,84 @@
 <head runat="server">
     <title>Organizer Dashboard</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-       
-            --primary-color: #16A34A;   
-            --secondary-color: #4ADE80; 
-            --bg-color: #F0FDF4;      
-            --text-color: #14532D;     
-            --card-bg: #FFFFFF;         
-            --warning-color: #F59E0B;   
+        :root {
+            --bg-color: #0B0F19;        
+            --card-bg: #111827;       
+            --card-border: #2D1F47;  
+            --primary-purple: #8B5CF6; 
+            --purple-hover: #7C3AED;  
+            --text-main: #FFFFFF;     
+            --text-muted: #9CA3AF;    
+            --input-bg: #1F2937;     
+            --input-border: #374151;  
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
         }
 
-       
+      
         .navbar {
-            background-color: var(--primary-color);
+            background-color: #111827;
             color: #FFFFFF;
-            padding: 15px 30px;
+            padding: 16px 5%; 
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25);
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
         }
 
         .navbar h2 {
             margin: 0;
+            margin-left: 20px; 
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 700;
+            background: linear-gradient(135deg, #A78BFA 0%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
         .btn-logout {
-            background-color: transparent;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-            padding: 6px 16px;
-            border-radius: 6px;
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #F87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 18px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .btn-logout:hover {
-            background-color: #FFFFFF;
-            color: var(--primary-color);
+            background-color: #EF4444;
+            color: #FFFFFF;
+            border-color: #EF4444;
         }
 
-       
+      
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 30px auto;
+            width: 92%;
+            max-width: 1280px;
+            margin: 35px auto;
             display: flex;
-            gap: 25px;
+            gap: 30px;
         }
 
-       
+      
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(20, 83, 45, 0.08);
-            padding: 24px;
-            border: 1px solid var(--secondary-color);
+            border-radius: 14px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            padding: 28px;
+            border: 1px solid var(--card-border);
         }
 
         .form-section {
@@ -87,90 +97,107 @@
 
         .card h3 {
             margin-top: 0;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            font-size: 18px;
-            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary-purple);
+            padding-bottom: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
 
-       
+        
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--text-color);
-            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #BBF7D0;
-            border-radius: 6px;
+            padding: 12px 14px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
             box-sizing: border-box;
             font-size: 14px;
-            color: var(--text-color);
-            background-color: #FAFCF9;
+            color: var(--text-main);
+            background-color: var(--input-bg);
             transition: all 0.2s ease;
         }
 
         .form-control:focus {
-            border-color: var(--primary-color);
+            border-color: var(--primary-purple);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
-            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+            background-color: #111827;
         }
 
-       
+        
         .btn-submit {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
             color: #FFFFFF;
             border: none;
-            padding: 12px;
+            padding: 14px;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            margin-top: 8px;
         }
 
         .btn-submit:hover {
-            background-color: #15803D; 
+            background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
-     
+      
         .gridview-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            border-radius: 6px;
+            margin-top: 18px;
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--card-border);
         }
 
         .gridview-table th {
-            background-color: var(--primary-color);
-            color: #FFFFFF;
+            background-color: #1F1535;
+            color: #C4B5FD;
             text-align: left;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--card-border);
         }
 
         .gridview-table td {
-            padding: 12px;
-            border-bottom: 1px solid #DCFCE7;
+            padding: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 14px;
-            color: var(--text-color);
+            color: #E5E7EB;
         }
 
         .gridview-table tr:hover {
-            background-color: #DCFCE7;
+            background-color: rgba(139, 92, 246, 0.08);
+        }
+
+      
+        #lblMsg {
+            font-weight: 500;
+            font-size: 14px;
         }
     </style>
 </head>
