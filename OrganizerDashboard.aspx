@@ -25,7 +25,7 @@
             padding: 0;
         }
 
-        /* Top Navigation Bar */
+       
         .navbar {
             background-color: var(--primary-color);
             color: #FFFFFF;
@@ -59,7 +59,7 @@
             color: var(--primary-color);
         }
 
-        /* Main Layout */
+       
         .container {
             width: 90%;
             max-width: 1200px;
@@ -68,7 +68,7 @@
             gap: 25px;
         }
 
-        /* Card Component */
+       
         .card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -94,7 +94,7 @@
             font-weight: 600;
         }
 
-        /* Form Inputs */
+       
         .form-group {
             margin-bottom: 16px;
         }
@@ -126,7 +126,7 @@
             background-color: #FFFFFF;
         }
 
-        /* Create Event Button */
+       
         .btn-submit {
             background-color: var(--primary-color);
             color: #FFFFFF;
@@ -141,10 +141,10 @@
         }
 
         .btn-submit:hover {
-            background-color: #15803D; /* Slightly darker green */
+            background-color: #15803D; 
         }
 
-        /* Custom Table (GridView) */
+     
         .gridview-table {
             width: 100%;
             border-collapse: collapse;
@@ -177,7 +177,7 @@
 <body>
     <form id="form1" runat="server">
         
-        <!-- Top Navigation Bar -->
+        <!--  Navigation Bar -->
         <div class="navbar">
             <h2>KMC Community - Organizer Dashboard</h2>
             <div>
@@ -189,7 +189,7 @@
         <!-- Main Content -->
         <div class="container">
             
-            <!-- 1. Create Event Form -->
+            <!--  Create Event Form -->
             <div class="card form-section">
                 <h3>Create New Event</h3>
 
@@ -220,7 +220,7 @@
                 </div>
             </div>
 
-            <!-- 2. Published Events Table -->
+            <!--  Published Events Table -->
             <div class="card table-section">
                 <h3>Your Published Events</h3>
                 <asp:GridView ID="gvEvents" runat="server" AutoGenerateColumns="False" CssClass="gridview-table" EmptyDataText="No events found yet!">
