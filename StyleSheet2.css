@@ -1,0 +1,156 @@
+﻿/* Google Font Import for Modern Typography */
+@import url('https://i.pinimg.com/736x/f2/cf/f4/f2cff4be638d9720243ef8cff13941d1.jpg');
+
+:root {
+    --bg-color: #0B0F19; /* Dashboard Background */
+    --card-bg: #111827; /* Dark Solid Card Background */
+    --card-border: #2D1F47; /* Dark Purple Border */
+    --primary-purple: #8B5CF6; /* Glowing Purple Accent */
+    --purple-hover: #7C3AED; /* Deep Purple Hover */
+    --text-main: #FFFFFF; /* White Text */
+    --text-muted: #9CA3AF; /* Muted Grey Text */
+    --input-bg: #1F2937; /* Dark Input Background */
+    --input-border: #374151;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    background: linear-gradient(rgba(11, 15, 25, 0.82), rgba(11, 15, 25, 0.88)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Center Table Layout */
+.center-table {
+    width: 100%;
+    height: 100vh;
+    border-collapse: collapse;
+}
+
+    .center-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+/* Login Card Container */
+.login-card, .signup-card {
+    width: 380px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 38px 32px;
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.12);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+    /* Title Solid White Styling */
+    .login-card h2, .signup-card h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 26px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #FFFFFF; /* Pure White Color */
+        background: none;
+        -webkit-text-fill-color: initial;
+    }
+
+/* Form Groups & Labels */
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+/* Text Inputs & Dropdowns */
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: var(--text-main);
+    background-color: var(--input-bg);
+    transition: all 0.2s ease;
+}
+
+    .form-control:focus {
+        border-color: var(--primary-purple);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+        background-color: #111827;
+    }
+
+    .form-control option {
+        background-color: var(--card-bg);
+        color: var(--text-main);
+    }
+
+/* Submit / Login / Signup Buttons */
+.btn-login, .btn-signup, .btn-submit {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    margin-top: 6px;
+}
+
+    .btn-login:hover, .btn-signup:hover, .btn-submit:hover {
+        background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+
+/* Message Label */
+.message-group {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: #F87171;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Bottom Links */
+span {
+    color: var(--text-muted);
+    font-size: 13.5px;
+}
+
+a {
+    color: #A78BFA;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+    a:hover {
+        color: #C4B5FD;
+        text-decoration: underline;
+    }

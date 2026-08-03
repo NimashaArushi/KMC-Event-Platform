@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Sign Up - KMC App</title>
-    <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
+    <link href="StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">

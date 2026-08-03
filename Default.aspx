@@ -1,11 +1,11 @@
-﻿HTML
+﻿
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Web Form with Master Page.aspx.cs" Inherits="Kmc_Login.Web_Form_with_Master_Page" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>KMC Platform - Login</title>
-    <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
+    <link href="StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
