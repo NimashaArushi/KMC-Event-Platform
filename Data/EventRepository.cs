@@ -30,6 +30,16 @@ namespace Kmc_Login.Data
             }
         }
 
+        internal object SearchEvents(string keyword)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object GetAllEvents()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Event> GetEventsByOrganizer(string email)
         {
             List<Event> eventList = new List<Event>();
@@ -61,6 +71,11 @@ namespace Kmc_Login.Data
             }
 
             return eventList;
+        }
+
+        internal bool RegisterUserForEvent(int eventId, string userEmail)
+        {
+            throw new NotImplementedException();
         }
     }
 }
