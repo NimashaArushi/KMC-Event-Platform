@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using Kmc_Login.Models; 
+using Kmc_Login.Models;
 
 namespace Kmc_Login.Data
 {
     public class EventRepository
     {
-        private string connString = ConfigurationManager.ConnectionStrings["KMCConnection"].ConnectionString;
+        private string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private string connString;
+        private List<Event> eventList;
 
         public bool AddEvent(Event evt)
         {
@@ -30,17 +32,61 @@ namespace Kmc_Login.Data
             }
         }
 
-        internal object SearchEvents(string keyword)
+        public List<Event> SearchEvents(string keyword)
         {
-            throw new NotImplementedException();
+            List<Event> eventList = new List<Event>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            { 
+            string query="SELECT Id,Title,EventDate,Location,Description FROM Events" +
+                  "WHERE Title LIKE @Keyword OR Location LIKE @Keyword ORDER BY EventDate ASC";
+
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read()) {
+                    eventList.Add(new Event
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        Title = reader["Title"].ToString(),
+                        EventDate = Convert.ToDateTime(reader["EventDate"]),
+                        Location = reader["Location"].ToString(),
+                        Description = reader["Description"].ToString()
+                    }) ;}
+  }
+            return eventList;
         }
 
-        internal object GetAllEvents()
+        public List<Event> GetAllEvents()
         {
-            throw new NotImplementedException();
+            List<Event> eventList = new List<Event>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT Id, Title, EventDate, Location, Description FROM Events ORDER BY EventDate ASC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    eventList.Add(new Event
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        Title = reader["Title"].ToString(),
+                        EventDate = Convert.ToDateTime(reader["EventDate"]),
+                        Location = reader["Location"].ToString(),
+                        Description = reader["Description"].ToString()
+                    });
+                }
+            }
+            return eventList;
         }
 
-        public List<Event> GetEventsByOrganizer(string email)
+            public List<Event> GetEventsByOrganizer(string email)
         {
             List<Event> eventList = new List<Event>();
 
@@ -73,9 +119,33 @@ namespace Kmc_Login.Data
             return eventList;
         }
 
-        internal bool RegisterUserForEvent(int eventId, string userEmail)
+        public bool RegisterUserForEvent(int eventId, string userEmail)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+              
+                string checkQuery = "SELECT COUNT(1) FROM EventRegistrations WHERE EventId = @EventId AND UserEmail = @UserEmail";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@EventId", eventId);
+                checkCmd.Parameters.AddWithValue("@UserEmail", userEmail);
+
+                conn.Open();
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (count > 0)
+                {
+                    return false; 
+                }
+
+               
+                string insertQuery = "INSERT INTO EventRegistrations (EventId, UserEmail, RegisteredDate) VALUES (@EventId, @UserEmail, GETDATE())";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn);
+                insertCmd.Parameters.AddWithValue("@EventId", eventId);
+                insertCmd.Parameters.AddWithValue("@UserEmail", userEmail);
+
+                int rows = insertCmd.ExecuteNonQuery();
+                return rows > 0;
+            }
         }
     }
 }
